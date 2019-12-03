@@ -12,7 +12,7 @@ public class Account {
     private Date dateCreated;
     private String pin;
 
-    public Account() {
+    Account() {
         this.id = 0;
         this.balance = 0;
         this.annualInterestRate = 0;
@@ -22,7 +22,7 @@ public class Account {
         this.pin = "0000";
     }
 
-    public void Account(int id, double initialBalance, String pin) {
+    Account(int id, double initialBalance, String pin) {
         this.id = id;
         this.balance = initialBalance;
         // use the Instant.now() method to get current date and time (limited accuracy to minutes)
