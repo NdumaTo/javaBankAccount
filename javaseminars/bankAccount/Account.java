@@ -10,20 +10,34 @@ public class Account {
     private double balance;
     private double annualInterestRate;
     private Date dateCreated;
+    private String pin;
 
     public Account() {
         this.id = 0;
         this.balance = 0;
         this.annualInterestRate = 0;
-//      use the Instant.now() method to get current date
-        this.dateCreated = Date.from(Instant.now().truncatedTo(ChronoUnit.DAYS));
+//      use the Instant.now() method to get current date/time (limited accuracy to minutes)
+        this.dateCreated = Date.from(Instant.now().truncatedTo(ChronoUnit.MINUTES));
+        // pin is default 0000
+        this.pin = "0000";
     }
 
-    public void Account(int id, double initialBalance) {
+    public void Account(int id, double initialBalance, String pin) {
         this.id = id;
         this.balance = initialBalance;
-        // use the Instant.now() method to get current date
-        this.dateCreated = Date.from(Instant.now().truncatedTo(ChronoUnit.DAYS));
+        // use the Instant.now() method to get current date and time (limited accuracy to minutes)
+        this.dateCreated = Date.from(Instant.now().truncatedTo(ChronoUnit.MINUTES));
+        // only allows 4 digit pin numbers, default 0000
+        if (pin.matches("\\d{4}")){
+            this.pin = pin;
+        }else {
+            this.pin = "0000";
+        }
+    }
+
+    // correctPin method checks the validity of an inputted pin.
+    boolean correctPin(String inputPin){
+        return (inputPin.equals(this.pin));
     }
 
     public Date getDate() { return this.dateCreated; }
@@ -37,20 +51,23 @@ public class Account {
         return this.annualInterestRate/12;
     }
 
-    public void withdraw(double withdrawl) {
-        this.balance -= withdrawl;
+    // fancy withdraw
+    public boolean withdraw(double withdrawal) {
+        if (withdrawal > 0 && withdrawal <= this.balance) {
+            this.balance -= withdrawal;
+            return true;
+        }else {
+            return false;
+        }
     }
 
     // fancy deposit method.
     // only allows positive deposits.
-    public double deposit(double amount){
+    public boolean deposit(double amount){
         if (amount > 0) {
             balance += amount;
-            System.out.println("£"+String.format("%.2f",amount)+" Deposited");
-            return balance;
+            return true;
         }
-        System.out.println("Deposit must be Positive.");
-        return -1;
-
+        return false;
     }
 }
