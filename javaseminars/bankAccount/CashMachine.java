@@ -19,11 +19,12 @@ public class CashMachine {
     }
 
     public void run(){
-        //TODO: ADD GUI for running cashmachine
+        //TODO: add ui here?
     }
 
     public static void main(String[] args) {
         CashMachine cashMachineTest = new CashMachine();
+        cashMachineTest.addAccount(12345,0,"1234");
         cashMachineTest.run();
     }
 }
