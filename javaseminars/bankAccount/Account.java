@@ -35,12 +35,29 @@ public class Account {
         }
     }
 
+    // getters and setters for id and balance
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     // correctPin method checks the validity of an inputted pin.
     boolean correctPin(String inputPin){
         return (inputPin.equals(this.pin));
     }
 
-    public Date getDate() { return this.dateCreated; }
+    public Date getDateCreated() { return this.dateCreated; }
 
     // getter for annualInterestRate
     public double getAnnualInterestRate() {
