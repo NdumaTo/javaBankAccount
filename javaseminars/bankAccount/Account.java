@@ -12,6 +12,7 @@ public class Account {
     private Date dateCreated;
     private String pin;
 
+    // default constructor (no parameters)
     Account() {
         this.id = 0;
         this.balance = 0;
@@ -22,6 +23,7 @@ public class Account {
         this.pin = "0000";
     }
 
+    // Account constructor with id, initialBalance and pin specified as parameters.
     Account(int id, double initialBalance, String pin) {
         this.id = id;
         this.balance = initialBalance;
@@ -69,6 +71,7 @@ public class Account {
     }
 
     // fancy withdraw
+    // withdrawal must be positive and less than or equal to balance.
     public boolean withdraw(double withdrawal) {
         if (withdrawal > 0 && withdrawal <= this.balance) {
             this.balance -= withdrawal;

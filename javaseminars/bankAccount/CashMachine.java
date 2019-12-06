@@ -14,10 +14,17 @@ public class CashMachine {
 
     // adds a new account to the cash machine.
     public boolean addAccount(int id, double initialDeposit, String pin){
+        // returns false if pin isn't valid or initial deposit is less than 0.
         if(!(pin.matches("\\d{4}")||initialDeposit<0)){
             return false;
         }
         accounts.put(id,new Account(id, initialDeposit,pin));
+        return true;
+    }
+
+    // overloaded addAccount method for adding default accounts.
+    public boolean addAccount(){
+        accounts.put(0, new Account());
         return true;
     }
 
