@@ -1,4 +1,4 @@
-package javaseminars.bankAccount;
+package javaseminars.javaBankAccount.javaseminars.bankAccount;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -21,10 +21,11 @@ public class Account {
         this.dateCreated = Date.from(Instant.now().truncatedTo(ChronoUnit.MINUTES));
         // pin is default 0000
         this.pin = "0000";
+        this.annualInterestRate = 3.9;
     }
 
     // Account constructor with id, initialBalance and pin specified as parameters.
-    Account(int id, double initialBalance, String pin) {
+    Account(int id, double initialBalance, String pin, double interestRate) {
         this.id = id;
         this.balance = initialBalance;
         // use the Instant.now() method to get current date and time (limited accuracy to minutes)
@@ -35,6 +36,8 @@ public class Account {
         }else {
             this.pin = "0000";
         }
+        
+        this.annualInterestRate = interestRate;
     }
 
     // getters and setters for id and balance
